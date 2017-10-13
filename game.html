@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="user-scalable=no"/>
+        <style>
+            html, body, canvas {
+                margin: 0;
+                padding: 0;
+                border: 0;
+                width: 100%;
+                height: 100%;
+            }
+            canvas {
+                image-rendering: -moz-crisp-edges;
+                image-rendering: pixelated;
+            }
+            #debug-info {
+                position: fixed;
+                left: 5px;
+                top: 5px;
+                color: magenta;
+                font-family: monospace;
+                font-size: 14px;
+                white-space: pre;
+            }
+            #tooltip {
+                position: fixed;
+                left: 5px;
+                bottom: 5px;
+                color: white;
+                text-shadow: 0 0 2px black;
+                font-family: monospace;
+                white-space: pre;
+                font-size: 14px;
+            }
+            #debug-editor {
+                position: fixed;
+                right: 0;
+                top: 0;
+                color: white;
+                text-shadow: 0 0 2px black;
+                font-size: 12px;
+                overflow: auto;
+                max-height: 100%;
+                max-width: 100%;
+                font-family: sans-serif;
+                padding: 5px;
+                background: rgba(0, 0, 0, 0.2);
+                box-sizing: border-box;
+            }
+            #debug-editor input {
+                border: 0;
+                margin: 0;
+                padding: 0;
+                font-family: sans-serif;
+                font-size: 12px;
+                width: 100%;
+            }
+            #debug-editor input[type="text"] {
+                padding: 2px;
+                /* border: 1px solid #DDD; */
+                border: none;
+                color: white;
+                background: rgba(0, 0, 0, 0.2);
+            }
+        </style>
+        <script src="three.min.js"></script>
+    </head>
+    <body>
+        <div id="debug-info"><div id="frameTimes"></div><div id="fps"></div></div>
+        <div id="tooltip"></div>
+        <div id="debug-editor"></div>
+        <canvas id="game" tabindex="0"></canvas>
+        <script data-main="fpm.js" src="require.js"></script>
+        <script>
+            let dbgModules = require.s.contexts._.defined;
+            setTimeout(() => window.F = dbgModules.fpm, 1000);
+        </script>
+    </body>
+</html>
